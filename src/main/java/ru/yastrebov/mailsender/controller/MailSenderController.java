@@ -8,14 +8,14 @@ import ru.yastrebov.mailsender.service.MailSenderService;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping
+@RequestMapping("/sendEmail")
 public class MailSenderController {
 
-    private final MailSenderService emailSender;
+    private final MailSenderService mailSenderService;
 
-    @GetMapping("/sendEmail")
+    @GetMapping()
     public ResponseEntity<String> sendEmail() {
 
-        return emailSender.sendEmail();
+        return ResponseEntity.ok("Email sent!");
     }
 }

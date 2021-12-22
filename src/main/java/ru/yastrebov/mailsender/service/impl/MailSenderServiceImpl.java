@@ -14,16 +14,15 @@ public class MailSenderServiceImpl implements MailSenderService {
     private final JavaMailSender emailSender;
 
     @Override
-    public ResponseEntity<String> sendEmail() {
+    public String sendEmail() {
 
         SimpleMailMessage message = new SimpleMailMessage();
-
         message.setTo("yastrebow@gmail.com");
         message.setSubject("Test Simple Email");
         message.setText("Hello, I'm testing Simple Email");
 
         emailSender.send(message);
 
-        return ResponseEntity.ok("Email sent!");
+        return "Email sent!";
     }
 }
