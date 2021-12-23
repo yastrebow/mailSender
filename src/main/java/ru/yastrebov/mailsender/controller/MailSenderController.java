@@ -1,35 +1,21 @@
 package ru.yastrebov.mailsender.controller;
 
 
-import lombok.AllArgsConstructor;
-import org.springframework.mail.MailMessage;
-import org.springframework.mail.MailParseException;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.Date;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import ru.yastrebov.mailsender.service.MailSenderService;
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
+@RequestMapping("/sendEmail")
 public class MailSenderController {
 
-    public JavaMailSender emailSender;
+    private final MailSenderService mailSenderService;
 
-    @ResponseBody
-    @RequestMapping("/sendEmail")
-    public String sendEmail() {
+    @GetMapping()
+    public ResponseEntity<String> sendEmail() {
 
-        SimpleMailMessage message = new SimpleMailMessage();
-
-        message.setTo("yastrebow@gmail.com");
-        message.setSubject("Test Simple Email");
-        message.setText("Hello, I'm testing Simple Email");
-
-        this.emailSender.send(message);
-
-        return "Email Sent!!!";
+        return ResponseEntity.ok("Email sent!");
     }
 }
