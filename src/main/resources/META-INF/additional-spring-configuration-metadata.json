@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "server.kafka.consumer.bootstrap-servers",
+      "type": "java.lang.String",
+      "description": "Description for server.kafka.consumer.bootstrap-servers."
+    },
+    {
+      "name": "spring.jpa.datasource.driver-class-name",
+      "type": "java.lang.String",
+      "description": "Description for spring.jpa.datasource.driver-class-name."
+    }
+  ] }
