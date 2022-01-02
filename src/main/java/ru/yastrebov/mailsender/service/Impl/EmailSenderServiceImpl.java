@@ -6,7 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import ru.yastrebov.mailsender.kafka.KafkaConsumer;
 import ru.yastrebov.mailsender.service.EmailSenderService;
 
 @Service
