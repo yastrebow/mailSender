@@ -1,8 +1,7 @@
 package ru.yastrebov.mailsender.service.Impl;
 
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -10,6 +9,7 @@ import ru.yastrebov.mailsender.service.EmailSenderService;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class EmailSenderServiceImpl implements EmailSenderService {
 
     private final JavaMailSender emailSender;
@@ -22,8 +22,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         email.setSubject("Employee DB");
         email.setText("Receive Message from EmployeeDB: " + message);
 
-        Logger LOG = LoggerFactory.getLogger(EmailSenderServiceImpl.class);
-        LOG.info("Email is ready to send");
+        log.info("Email is ready to send");
 
         emailSender.send(email);
     }
