@@ -4,7 +4,7 @@ server:
 spring:
   kafka:
     consumer:
-      bootstrap-servers: localhost:8082
+      bootstrap-servers: localhost:9092
       group-id: employeeDB
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
