@@ -14,7 +14,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
 
     private final JavaMailSender emailSender;
 
-    public void sendEmail(String message) {
+    public SimpleMailMessage sendEmail(String message) {
 
         SimpleMailMessage email = new SimpleMailMessage();
 
@@ -25,5 +25,6 @@ public class EmailSenderServiceImpl implements EmailSenderService {
         log.info("Email is ready to send");
 
         emailSender.send(email);
+        return email;
     }
 }
