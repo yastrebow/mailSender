@@ -1,26 +1,40 @@
 package ru.yastrebov.mailsender.service.Impl;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 
-import static org.mockito.Mockito.mock;
+import java.util.Objects;
+
+import static org.junit.Assert.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.argThat;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 @RunWith(MockitoJUnitRunner.class)
-class EmailSenderServiceImplTest {
+public class EmailSenderServiceImplTest {
+
+    private static final String EMAIL_TEXT = "Email sent!";
+    private static final String EMAIL_SUBJECT = "Employee DB";
+
+    @Mock
+    private JavaMailSender emailSender;
+
+    @InjectMocks
+    private EmailSenderServiceImpl emailSenderService;
 
     @Test
-    void sendEmailTest() {
-        SimpleMailMessage mockerEmail = mock(SimpleMailMessage.class);
+    public void sendEmail() {
 
-        mockerEmail.setTo("yastrebow@gmail.com");
-        mockerEmail.setSubject("Employee DB");
-        mockerEmail.setText("Receive Message from EmployeeDB: " + "Email sent!");
+        emailSenderService.sendEmail(EMAIL_TEXT);
 
-        verify(mockerEmail, times(1)).setText("Receive Message from EmployeeDB: " + "Email sent!");
+        verify(emailSender, times(1)).send(argThat((SimpleMailMessage email) ->
+                Objects.equals(email.getText(), "Receive Message from EmployeeDB: " + EMAIL_TEXT)
+                        && Objects.equals(email.getSubject(), EMAIL_SUBJECT)));
     }
-
 }
